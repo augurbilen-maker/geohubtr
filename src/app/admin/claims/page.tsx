@@ -12,7 +12,7 @@ async function getClaims() {
     ],
     include: {
       user: { select: { id: true, name: true, email: true } },
-      company: { select: { id: true, name: true, slug: true, website: true, email: true } },
+      company: { select: { id: true, name: true, slug: true, website: true } },
     },
   })
 }

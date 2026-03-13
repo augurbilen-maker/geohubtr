@@ -18,7 +18,7 @@ import {
   getIlBySlug,
   type BolgeKey,
 } from "@/lib/provinces"
-import { HIZMET_KATEGORİLERİ, KATEGORİ_GRUPLARI } from "@/lib/service-categories"
+import { HIZMET_KATEGORİLERİ } from "@/lib/service-categories"
 
 // ─── Tip tanımları ────────────────────────────────────────────────────────────
 
@@ -285,6 +285,13 @@ function KategoriSidebar({ p }: { p: SearchParams }) {
     egitim: "Eğitim",
   }
 
+  // Kategorileri grup bazında grupla
+  const gruplar: Record<string, typeof HIZMET_KATEGORİLERİ> = {}
+  HIZMET_KATEGORİLERİ.forEach(kat => {
+    if (!gruplar[kat.grup]) gruplar[kat.grup] = []
+    gruplar[kat.grup].push(kat)
+  })
+
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-4 sticky top-20">
       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-2">Hizmet Kategorisi</div>
@@ -295,7 +302,7 @@ function KategoriSidebar({ p }: { p: SearchParams }) {
       >
         🔧 Tüm Kategoriler
       </Link>
-      {Object.entries(KATEGORİ_GRUPLARI).map(([gk, kats]) => (
+      {Object.entries(gruplar).map(([gk, kats]) => (
         <div key={gk} className="mb-2">
           <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1 mt-1">{grupAd[gk] ?? gk}</div>
           {kats.map(kat => (
@@ -308,7 +315,6 @@ function KategoriSidebar({ p }: { p: SearchParams }) {
             >
               <span>{kat.icon}</span>
               <span className="flex-1 leading-tight">{kat.ad}</span>
-              {kat.yeni && <span className="text-[8px] bg-amber-400 text-white px-1 rounded font-bold">YENİ</span>}
             </Link>
           ))}
         </div>

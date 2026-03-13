@@ -24,16 +24,15 @@ interface Category {
 }
 
 const steps = [
-  { id: 1, label: "Category", description: "Select a category" },
-  { id: 2, label: "Details", description: "Add listing details" },
-  { id: 3, label: "Attributes", description: "Fill technical specs" },
+  { id: 1, label: "Kategori", description: "Kategori seçin" },
+  { id: 2, label: "Detaylar", description: "İlan bilgilerini girin" },
+  { id: 3, label: "Özellikler", description: "Teknik özellikleri doldurun" },
 ]
 
 const listingTypes = [
-  { value: "SALE_NEW", label: "For Sale — New", description: "Brand new, unused equipment or software" },
-  { value: "SALE_USED", label: "For Sale — Used", description: "Pre-owned equipment in working condition" },
-  { value: "RENT", label: "For Rent", description: "Equipment available for rental periods" },
-  { value: "SERVICE", label: "Service / Software", description: "Professional service or SaaS offering" },
+  { value: "SERVICE",  label: "Hizmet",       description: "Mesleki hizmet teklifi" },
+  { value: "SALE",     label: "Satış",         description: "Ekipman veya ürün satışı" },
+  { value: "RENTAL",   label: "Kiralama",      description: "Ekipman kiralama" },
 ]
 
 export default function NewListingPage() {
@@ -49,7 +48,7 @@ export default function NewListingPage() {
     title: "",
     description: "",
     price: "",
-    currency: "USD",
+    currency: "TRY",
   })
   const [dynamicAttributes, setDynamicAttributes] = useState<Record<string, string | boolean | string[]>>({})
 
@@ -66,7 +65,7 @@ export default function NewListingPage() {
 
   async function handleSubmit() {
     if (!selectedCategory || !formData.listingType || !formData.title) {
-      setError("Please fill in all required fields")
+      setError("Lütfen tüm zorunlu alanları doldurun")
       return
     }
     setIsLoading(true)
@@ -77,7 +76,7 @@ export default function NewListingPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          categoryId: selectedCategory.id,
+          serviceCategory: selectedCategory.id,
           listingType: formData.listingType,
           title: formData.title,
           description: formData.description,
@@ -90,12 +89,12 @@ export default function NewListingPage() {
 
       const data = await res.json()
       if (!res.ok) {
-        setError(data.error || "Failed to create listing")
+        setError(data.error || "İlan oluşturulamadı")
         return
       }
       router.push("/dashboard/listings")
     } catch {
-      setError("Something went wrong. Please try again.")
+      setError("Bir hata oluştu. Lütfen tekrar deneyin.")
     } finally {
       setIsLoading(false)
     }
@@ -105,8 +104,8 @@ export default function NewListingPage() {
     <div className="max-w-2xl">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">Add New Listing</h1>
-        <p className="text-muted-foreground mt-1">Follow the steps to create your listing</p>
+        <h1 className="text-2xl font-bold">Yeni İlan Ekle</h1>
+        <p className="text-muted-foreground mt-1">İlanınızı oluşturmak için adımları takip edin</p>
       </div>
 
       {/* Stepper */}
@@ -141,8 +140,8 @@ export default function NewListingPage() {
       {step === 1 && (
         <Card>
           <CardHeader>
-            <CardTitle>Select a Category</CardTitle>
-            <CardDescription>Choose the category that best fits your listing</CardDescription>
+            <CardTitle>Kategori Seçin</CardTitle>
+            <CardDescription>İlanınıza en uygun kategoriyi seçin</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 gap-3">
@@ -167,7 +166,7 @@ export default function NewListingPage() {
               ))}
             </div>
             <div className="space-y-2 pt-2">
-              <Label>Listing Type *</Label>
+              <Label>İlan Türü *</Label>
               <div className="grid grid-cols-1 gap-2">
                 {listingTypes.map((type) => (
                   <button
@@ -198,33 +197,33 @@ export default function NewListingPage() {
       {step === 2 && (
         <Card>
           <CardHeader>
-            <CardTitle>Listing Details</CardTitle>
-            <CardDescription>Provide the main information about your listing</CardDescription>
+            <CardTitle>İlan Detayları</CardTitle>
+            <CardDescription>İlanınız hakkında temel bilgileri girin</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">Title *</Label>
+              <Label htmlFor="title">Başlık *</Label>
               <Input
                 id="title"
                 value={formData.title}
                 onChange={(e) => setFormData((p) => ({ ...p, title: e.target.value }))}
-                placeholder="e.g. Leica RTC360 3D Laser Scanner"
+                placeholder="Örn: Leica RTC360 3D Lazer Tarama Hizmeti"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description">Description *</Label>
+              <Label htmlFor="description">Açıklama *</Label>
               <textarea
                 id="description"
                 value={formData.description}
                 onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))}
-                placeholder="Describe your listing in detail — condition, features, what's included..."
+                placeholder="İlanınızı detaylı açıklayın..."
                 rows={5}
                 className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="price">Price (optional)</Label>
+                <Label htmlFor="price">Fiyat (opsiyonel)</Label>
                 <Input
                   id="price"
                   type="number"
@@ -236,17 +235,16 @@ export default function NewListingPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="currency">Currency</Label>
+                <Label htmlFor="currency">Para Birimi</Label>
                 <select
                   id="currency"
                   value={formData.currency}
                   onChange={(e) => setFormData((p) => ({ ...p, currency: e.target.value }))}
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
+                  <option value="TRY">TRY (₺)</option>
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
-                  <option value="GBP">GBP (£)</option>
-                  <option value="CHF">CHF</option>
                 </select>
               </div>
             </div>
@@ -258,9 +256,9 @@ export default function NewListingPage() {
       {step === 3 && (
         <Card>
           <CardHeader>
-            <CardTitle>Technical Specifications</CardTitle>
+            <CardTitle>Teknik Özellikler</CardTitle>
             <CardDescription>
-              Fill in the specific attributes for {selectedCategory?.name}
+              {selectedCategory?.name} için ek özellikleri doldurun
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -274,7 +272,7 @@ export default function NewListingPage() {
                   <Input
                     id={field.name}
                     type="number"
-                    placeholder={field.min !== undefined ? `${field.min} – ${field.max}` : "Enter value"}
+                    placeholder={field.min !== undefined ? `${field.min} – ${field.max}` : "Değer girin"}
                     value={(dynamicAttributes[field.name] as string) || ""}
                     onChange={(e) => handleAttrChange(field.name, e.target.value)}
                     min={field.min}
@@ -288,7 +286,7 @@ export default function NewListingPage() {
                     onChange={(e) => handleAttrChange(field.name, e.target.value)}
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <option value="">Select {field.name}</option>
+                    <option value="">Seçin</option>
                     {field.options.map((opt) => (
                       <option key={opt} value={opt}>{opt}</option>
                     ))}
@@ -302,14 +300,14 @@ export default function NewListingPage() {
                       onChange={(e) => handleAttrChange(field.name, e.target.checked)}
                       className="rounded border-border"
                     />
-                    <span className="text-sm">Yes</span>
+                    <span className="text-sm">Evet</span>
                   </label>
                 )}
                 {field.type === "text" && (
                   <Input
                     id={field.name}
                     type="text"
-                    placeholder={`Enter ${field.name}`}
+                    placeholder={`${field.name} girin`}
                     value={(dynamicAttributes[field.name] as string) || ""}
                     onChange={(e) => handleAttrChange(field.name, e.target.value)}
                   />
@@ -317,7 +315,7 @@ export default function NewListingPage() {
               </div>
             ))}
             {(!selectedCategory?.customFieldsSchema || selectedCategory.customFieldsSchema.length === 0) && (
-              <p className="text-sm text-muted-foreground text-center py-4">No additional attributes for this category.</p>
+              <p className="text-sm text-muted-foreground text-center py-4">Bu kategori için ek özellik bulunmuyor.</p>
             )}
           </CardContent>
         </Card>
@@ -330,32 +328,32 @@ export default function NewListingPage() {
           onClick={() => step > 1 ? setStep(step - 1) : router.back()}
         >
           <ChevronLeft className="h-4 w-4 mr-1" />
-          {step === 1 ? "Cancel" : "Back"}
+          {step === 1 ? "İptal" : "Geri"}
         </Button>
         {step < 3 ? (
           <Button
             onClick={() => {
               if (step === 1 && (!selectedCategory || !formData.listingType)) {
-                setError("Please select a category and listing type")
+                setError("Lütfen kategori ve ilan türü seçin")
                 return
               }
               if (step === 2 && (!formData.title || !formData.description)) {
-                setError("Please fill in the title and description")
+                setError("Lütfen başlık ve açıklama girin")
                 return
               }
               setError(null)
               setStep(step + 1)
             }}
           >
-            Continue
+            Devam
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
         ) : (
           <Button onClick={handleSubmit} disabled={isLoading}>
             {isLoading ? (
-              <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Publishing...</>
+              <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Yayınlanıyor...</>
             ) : (
-              "Publish listing"
+              "İlanı Yayınla"
             )}
           </Button>
         )}

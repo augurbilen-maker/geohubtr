@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
-import { Plus, Eye, MousePointerClick, Star } from "lucide-react"
+import { Plus, Eye, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -12,7 +12,6 @@ async function getListings(userId: string) {
   return prisma.listing.findMany({
     where: { companyId: company.id },
     orderBy: [{ isPromoted: "desc" }, { createdAt: "desc" }],
-    include: { category: { select: { name: true, slug: true } } },
   })
 }
 
@@ -88,7 +87,7 @@ export default async function DashboardListingsPage() {
                           {listing.isPromoted && <Star className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" />}
                           <div>
                             <p className="font-medium line-clamp-1">{listing.title}</p>
-                            <p className="text-xs text-muted-foreground">{listing.category.name}</p>
+                            <p className="text-xs text-muted-foreground">{listing.serviceCategory}</p>
                           </div>
                         </div>
                       </td>
@@ -111,9 +110,6 @@ export default async function DashboardListingsPage() {
                         <div className="flex items-center gap-3 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Eye className="h-3 w-3" /> {listing.viewCount}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <MousePointerClick className="h-3 w-3" /> {listing.clickCount}
                           </span>
                         </div>
                       </td>

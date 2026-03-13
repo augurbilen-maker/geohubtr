@@ -1,90 +1,59 @@
-import { prisma } from "@/lib/prisma"
-import Link from "next/link"
-import { Plus, Tag } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Tag } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 
-async function getCategories() {
-  return prisma.category.findMany({
-    orderBy: { createdAt: "desc" },
-    include: {
-      _count: { select: { listings: true } },
-    },
-  })
-}
+// ServiceCategory enum değerlerini insan okunabilir formata çevir
+const CATEGORIES = [
+  { key: "ROLOVE", label: "Rölöve", group: "Klasik Jeodezi & Kadastro" },
+  { key: "ESKI_ESER", label: "Eski Eser Rölövesi & Restorasyon", group: "Klasik Jeodezi & Kadastro" },
+  { key: "HALIHAZIR_HARITA", label: "Halihazır Harita", group: "Klasik Jeodezi & Kadastro" },
+  { key: "APLIKASYON", label: "Aplikasyon, İfraz, Tevhit", group: "Klasik Jeodezi & Kadastro" },
+  { key: "LIHKAB", label: "LİHKAB", group: "Klasik Jeodezi & Kadastro" },
+  { key: "INSAAT_KONTROL", label: "İnşaat Kontrol & Metraj", group: "Klasik Jeodezi & Kadastro" },
+  { key: "MADEN_OCAK", label: "Maden & Ocak Ölçümü", group: "Klasik Jeodezi & Kadastro" },
+  { key: "LAZER_TARAMA", label: "Lazer Tarama & 3D Nokta Bulutu", group: "3D Teknoloji" },
+  { key: "BIM_MODELLEME", label: "BIM Modelleme", group: "3D Teknoloji" },
+  { key: "FOTOGRAMETRI", label: "Fotogrametri", group: "3D Teknoloji" },
+  { key: "DRONE_HARITALAMA", label: "Drone / İHA Haritalama", group: "3D Teknoloji" },
+  { key: "CBS_GIS", label: "CBS / GIS Hizmetleri", group: "CBS / GIS" },
+  { key: "GAYRIMENKUL_DEGERLEME", label: "Gayrimenkul Değerleme", group: "Ticari & Değerleme" },
+  { key: "CIHAZ_SATIS", label: "Cihaz Satış & Kiralama", group: "Ekipman" },
+  { key: "EGITIM_KURUMU", label: "Eğitim Kurumu", group: "Eğitim" },
+]
 
-const typeColor: Record<string, string> = {
-  EQUIPMENT: "bg-blue-100 text-blue-800",
-  SERVICE: "bg-green-100 text-green-800",
-  SOFTWARE: "bg-purple-100 text-purple-800",
-}
+export default function AdminCategoriesPage() {
+  const groups = Array.from(new Set(CATEGORIES.map((c) => c.group)))
 
-export default async function AdminCategoriesPage() {
-  const categories = await getCategories()
-  
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Categories</h1>
-          <p className="text-muted-foreground mt-1">Manage categories and their dynamic field schemas</p>
+          <h1 className="text-2xl font-bold">Hizmet Kategorileri</h1>
+          <p className="text-muted-foreground mt-1">
+            Platformdaki {CATEGORIES.length} hizmet kategorisi — bunlar sistem enum değerleridir.
+          </p>
         </div>
-        <Link href="/admin/categories/new">
-          <Button size="sm">
-            <Plus className="h-4 w-4 mr-2" />
-            New Category
-          </Button>
-        </Link>
       </div>
-      
-      <div className="grid grid-cols-1 gap-4">
-        {categories.map((cat) => {
-          const schema = cat.customFieldsSchema as Array<{ name: string; type: string; filterable?: boolean }>
-          return (
-            <Card key={cat.id} className="hover:border-primary/50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold">{cat.name}</h3>
-                      <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${typeColor[cat.type]}`}>
-                        {cat.type}
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        {cat._count.listings} listings
-                      </span>
-                    </div>
-                    {cat.description && (
-                      <p className="text-sm text-muted-foreground mb-3">{cat.description}</p>
-                    )}
-                    {/* JSONB Schema Preview */}
-                    <div className="flex flex-wrap gap-2">
-                      {schema.map((field) => (
-                        <div key={field.name} className="flex items-center gap-1.5 text-xs bg-slate-100 rounded-md px-2 py-1">
-                          <span className="font-medium">{field.name}</span>
-                          <span className="text-muted-foreground">({field.type})</span>
-                          {field.filterable && (
-                            <span className="text-blue-600">• filterable</span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+
+      {groups.map((group) => (
+        <div key={group}>
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+            {group}
+          </h2>
+          <div className="grid grid-cols-1 gap-3">
+            {CATEGORIES.filter((c) => c.group === group).map((cat) => (
+              <Card key={cat.key} className="hover:border-primary/50 transition-colors">
+                <CardContent className="p-4 flex items-center gap-3">
+                  <Tag className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-sm">{cat.label}</p>
+                    <p className="text-xs text-muted-foreground font-mono">{cat.key}</p>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <Link href={`/directory?category=${cat.slug}`} className="text-xs text-muted-foreground hover:text-foreground underline">
-                      View
-                    </Link>
-                    <Link href={`/admin/categories/${cat.id}`} className="text-xs text-primary hover:underline">
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

@@ -18,21 +18,32 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    const { categoryId, listingType, title, description, price, currency, dynamicAttributes, status } = body
+    const { serviceCategory, listingType, title, description, price, currency, dynamicAttributes, status } = body
 
-    if (!categoryId || !listingType || !title || !description) {
+    if (!serviceCategory || !listingType || !title || !description) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
+
+    // Map incoming listingType values to schema enum (SERVICE | RENTAL | SALE)
+    const listingTypeMap: Record<string, "SERVICE" | "RENTAL" | "SALE"> = {
+      SERVICE:   "SERVICE",
+      SALE_NEW:  "SALE",
+      SALE_USED: "SALE",
+      RENT:      "RENTAL",
+      RENTAL:    "RENTAL",
+      SALE:      "SALE",
+    }
+    const mappedListingType = listingTypeMap[listingType] ?? "SERVICE"
 
     const listing = await prisma.listing.create({
       data: {
         companyId: company.id,
-        categoryId,
-        listingType,
+        serviceCategory,
+        listingType: mappedListingType,
         title,
         description,
         price: price ? price : null,
-        currency: currency || "USD",
+        currency: currency || "TRY",
         dynamicAttributes: dynamicAttributes || {},
         images: [],
         status: status || "DRAFT",
