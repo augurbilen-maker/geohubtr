@@ -1,0 +1,260 @@
+[
+  {
+    "id": 1,
+    "slug": "rolove",
+    "name": "Rölöve",
+    "icon": "📐",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Mevcut yapı ve alanların ölçülerek çizime aktarılması hizmeti",
+    "keywords": ["rölöve", "ölçüm", "çizim", "mimari", "kadastro"],
+    "subServices": [
+      {"slug": "mimari-rolove", "name": "Mimari Rölöve"},
+      {"slug": "yapisal-rolove", "name": "Yapısal Rölöve"},
+      {"slug": "cephe-rolove", "name": "Cephe Rölövesi"},
+      {"slug": "vaziyet-plani", "name": "Vaziyet Planı"},
+      {"slug": "kesit-cizimi", "name": "Kesit & Plan Çizimi"}
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "eski-eser-rolovesi",
+    "name": "Eski Eser Rölövesi",
+    "icon": "🏛️",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Tarihi yapı ve eserlerin belgelenmesi ve koruma projeleri",
+    "keywords": ["eski eser", "tarihi yapı", "koruma", "belgeleme", "restorasyon"],
+    "subServices": [
+      {"slug": "tarihi-yapi-belgeme", "name": "Tarihi Yapı Belgeleme"},
+      {"slug": "restorasyon-rolove", "name": "Restorasyon Rölövesi"},
+      {"slug": "fotogrametrik-belgeleme", "name": "Fotogrametrik Belgeleme"},
+      {"slug": "3d-nokta-bulutu", "name": "3D Nokta Bulutu Modeli"},
+      {"slug": "kultur-varligi-envanteri", "name": "Kültür Varlığı Envanteri"}
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "halihazir-harita",
+    "name": "Halihazır Harita",
+    "icon": "🗺️",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Arazi üzerindeki mevcut durumu gösteren topoğrafik haritaların üretilmesi",
+    "keywords": ["halihazır", "harita", "topografya", "imar", "kadastro"],
+    "subServices": [
+      {"slug": "topoğrafik-harita", "name": "Topoğrafik Harita"},
+      {"slug": "imar-durumu", "name": "İmar Durum Belgesi"},
+      {"slug": "arazı-haritası", "name": "Arazi Haritası"},
+      {"slug": "yükseklik-modeli", "name": "Sayısal Yükseklik Modeli"},
+      {"slug": "koordinat-tespiti", "name": "Koordinat Tespiti"}
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "aplikasyon-ifraz",
+    "name": "Aplikasyon & İfraz",
+    "icon": "📏",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Parselleme, sınır tespiti ve arazi bölme işlemleri",
+    "keywords": ["aplikasyon", "ifraz", "parselleme", "sınır", "bölme"],
+    "subServices": [
+      {"slug": "yapi-aplikasyonu", "name": "Yapı Aplikasyonu"},
+      {"slug": "parsel-ifraz", "name": "Parsel İfrazı"},
+      {"slug": "sinir-tespiti", "name": "Sınır Tespiti"},
+      {"slug": "tescil-plani", "name": "Tescil Planı"},
+      {"slug": "tevhid-islemleri", "name": "Tevhid İşlemleri"}
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "lihkab",
+    "name": "LİHKAB",
+    "icon": "📜",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "TKGM lisanslı harita ve kadastro büroları tarafından sunulan kadastral hizmetler",
+    "keywords": ["LİHKAB", "lisanslı büro", "kadastro", "TKGM", "tapu"],
+    "subServices": [
+      {"slug": "kadastral-imar", "name": "Kadastral İmar Uygulaması"},
+      {"slug": "tapu-tespit", "name": "Tapu Tespit"},
+      {"slug": "su-urunleri-alanı", "name": "Su Ürünleri Alan Tespiti"},
+      {"slug": "orman-kadastro", "name": "Orman Kadastro Çalışması"},
+      {"slug": "mera-tespiti", "name": "Mera Tespiti"}
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "insaat-kontrol",
+    "name": "İnşaat Kontrol",
+    "icon": "🏚️",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Yapım aşamasındaki projelerin teknik kontrol ve denetim hizmetleri",
+    "keywords": ["inşaat kontrol", "teknik denetim", "yapı denetim", "kot tespiti"],
+    "subServices": [
+      {"slug": "kot-tespiti", "name": "Kot & Temel Tespiti"},
+      {"slug": "insaat-izleme", "name": "İnşaat İlerleme İzleme"},
+      {"slug": "bina-geometri", "name": "Bina Geometri Kontrolü"},
+      {"slug": "deformasyon-izleme", "name": "Deformasyon İzleme"}
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "maden-ocak",
+    "name": "Maden & Ocak",
+    "icon": "⛰️",
+    "group": "klasik",
+    "groupName": "Klasik Jeodezi & Kadastro",
+    "description": "Maden sahası ve taş ocağı ölçüm, hacim ve kadastro hizmetleri",
+    "keywords": ["maden", "taş ocağı", "hacim hesabı", "saha ölçümü"],
+    "subServices": [
+      {"slug": "maden-sahasi-olcumu", "name": "Maden Sahası Ölçümü"},
+      {"slug": "hacim-hesabi", "name": "Hacim Hesabı"},
+      {"slug": "ocak-kadastro", "name": "Ocak Kadastrosu"},
+      {"slug": "galeri-olcumu", "name": "Galeri Ölçümü"}
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "lazer-tarama",
+    "name": "Lazer Tarama",
+    "icon": "🔦",
+    "group": "3d",
+    "groupName": "3D Teknoloji",
+    "description": "3D lazer tarama ile yüksek hassasiyetli nokta bulutu elde edilmesi",
+    "keywords": ["lazer tarama", "nokta bulutu", "3D tarama", "Leica", "FARO"],
+    "subServices": [
+      {"slug": "ic-mekan-tarama", "name": "İç Mekân Tarama"},
+      {"slug": "dis-cephe-tarama", "name": "Dış Cephe Tarama"},
+      {"slug": "endustriyel-tesis", "name": "Endüstriyel Tesis Tarama"},
+      {"slug": "nokta-bulutu-isleme", "name": "Nokta Bulutu İşleme"},
+      {"slug": "as-built-dokuman", "name": "As-Built Dokümantasyon"},
+      {"slug": "tersine-muhendislik", "name": "Tersine Mühendislik"}
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "bim-modelleme",
+    "name": "BIM Modelleme",
+    "icon": "🏗️",
+    "group": "3d",
+    "groupName": "3D Teknoloji",
+    "description": "Yapı bilgi modellemesi ile dijital ikiz oluşturma ve proje yönetimi",
+    "keywords": ["BIM", "Revit", "ArchiCAD", "dijital ikiz", "modelleme"],
+    "subServices": [
+      {"slug": "mimari-bim", "name": "Mimari BIM Modeli"},
+      {"slug": "yapisal-bim", "name": "Yapısal BIM Modeli"},
+      {"slug": "mep-bim", "name": "MEP Koordinasyonu"},
+      {"slug": "clash-detection", "name": "Çakışma Analizi"},
+      {"slug": "lod-modelleme", "name": "LOD 200-400 Modelleme"},
+      {"slug": "revit-ailesi", "name": "Revit Ailesi Geliştirme"}
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "fotogrametri",
+    "name": "Fotogrametri",
+    "icon": "📸",
+    "group": "3d",
+    "groupName": "3D Teknoloji",
+    "description": "Fotoğraf ve görüntülerden 3D model, ortofoto ve DEM üretimi",
+    "keywords": ["fotogrametri", "ortofoto", "DEM", "3D model", "görüntü işleme"],
+    "subServices": [
+      {"slug": "ortofoto-uretimi", "name": "Ortofoto Üretimi"},
+      {"slug": "dem-dsm-uretimi", "name": "DEM / DSM Üretimi"},
+      {"slug": "3d-mesh-model", "name": "3D Mesh Model"},
+      {"slug": "yakin-fotogrametri", "name": "Yakın Fotogrametri"},
+      {"slug": "hava-fotogrametri", "name": "Hava Fotogrametrisi"}
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "drone-iha",
+    "name": "Drone / İHA",
+    "icon": "🚁",
+    "group": "3d",
+    "groupName": "3D Teknoloji",
+    "description": "İnsansız hava aracıyla aerosel görüntü, haritalama ve inspeksiyon hizmetleri",
+    "keywords": ["drone", "İHA", "UAV", "hava fotoğrafı", "termal"],
+    "subServices": [
+      {"slug": "hava-fotograf", "name": "Hava Fotoğrafı & Video"},
+      {"slug": "drone-haritalama", "name": "Drone Haritalama"},
+      {"slug": "termal-goruntuleme", "name": "Termal Görüntüleme"},
+      {"slug": "tarim-iha", "name": "Tarım İHA Uygulamaları"},
+      {"slug": "enerji-inspeksiyon", "name": "Enerji Hattı İnspeksiyonu"},
+      {"slug": "insaat-izleme-iha", "name": "İnşaat İzleme"}
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "cbs-gis",
+    "name": "CBS / GIS Hizmetleri",
+    "icon": "🌐",
+    "group": "gis",
+    "groupName": "CBS / GIS",
+    "description": "Coğrafi Bilgi Sistemleri analiz, harita üretimi ve mekansal veri yönetimi",
+    "keywords": ["CBS", "GIS", "mekansal analiz", "ArcGIS", "QGIS"],
+    "subServices": [
+      {"slug": "mekansal-analiz", "name": "Mekansal Analiz"},
+      {"slug": "web-gis", "name": "Web GIS Geliştirme"},
+      {"slug": "veritabani-gis", "name": "CBS Veritabanı"},
+      {"slug": "uzaktan-algilama", "name": "Uzaktan Algılama"},
+      {"slug": "uydu-goruntu", "name": "Uydu Görüntü İşleme"},
+      {"slug": "network-analiz", "name": "Ağ Analizi"}
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "gayrimenkul-degerleme",
+    "name": "Gayrimenkul Değerleme",
+    "icon": "🏠",
+    "group": "ticari",
+    "groupName": "Ticari & Değerleme",
+    "description": "SPK lisanslı ekspertiz ve gayrimenkul değerleme hizmetleri",
+    "keywords": ["gayrimenkul", "değerleme", "ekspertiz", "SPK", "taşınmaz"],
+    "subServices": [
+      {"slug": "konut-degerleme", "name": "Konut Değerleme"},
+      {"slug": "ticari-degerleme", "name": "Ticari Gayrimenkul Değerleme"},
+      {"slug": "arazi-degerleme", "name": "Arazi & Tarla Değerleme"},
+      {"slug": "kamuastirma-degerleme", "name": "Kamulaştırma Değerlemesi"},
+      {"slug": "spk-raporu", "name": "SPK Değerleme Raporu"}
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "cihaz-satis-kiralama",
+    "name": "Cihaz Satış & Kiralama",
+    "icon": "🔭",
+    "group": "ekipman",
+    "groupName": "Ekipman & Teknoloji",
+    "description": "Jeodezi ve harita ekipmanı satış, kiralama ve teknik servis hizmetleri",
+    "keywords": ["cihaz", "ekipman", "total station", "GNSS", "Leica", "Trimble"],
+    "subServices": [
+      {"slug": "total-station-kiralama", "name": "Total Station Kiralama"},
+      {"slug": "gnss-alici", "name": "GNSS Alıcı Satış & Kiralama"},
+      {"slug": "lazer-scanner-kiralama", "name": "Lazer Scanner Kiralama"},
+      {"slug": "drone-kiralama", "name": "Drone Kiralama"},
+      {"slug": "teknik-servis", "name": "Teknik Servis & Kalibrasyon"}
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "egitim-kurumu",
+    "name": "Eğitim Kurumları",
+    "icon": "🎓",
+    "group": "egitim",
+    "groupName": "Eğitim & Sertifikasyon",
+    "description": "Jeodezi, haritacılık ve CBS alanında akademik ve mesleki eğitim",
+    "keywords": ["eğitim", "jeodezi", "haritacılık", "lisans", "sertifika"],
+    "subServices": [
+      {"slug": "lisans-programi", "name": "Lisans Programı"},
+      {"slug": "onlisans-programi", "name": "Önlisans Programı"},
+      {"slug": "meslek-lisesi", "name": "Meslek Lisesi"},
+      {"slug": "sertifika-programi", "name": "Sertifika Programı"},
+      {"slug": "cbs-egitimi", "name": "CBS/GIS Eğitimi"},
+      {"slug": "yazilim-egitimi", "name": "Yazılım & Otomasyon Eğitimi"}
+    ]
+  }
+]
