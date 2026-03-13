@@ -180,7 +180,7 @@ async function main() {
     },
   })
 
-  const company5 = await prisma.company.upsert({
+  await prisma.company.upsert({
     where: { slug: "bursa-kadastro" },
     update: {},
     create: {
